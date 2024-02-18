@@ -134,3 +134,4 @@ yarn.lock
 *.keystore
 
 ZKbiometrics-APK/
+clean-commit.bat
