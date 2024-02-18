@@ -20,32 +20,32 @@ APK: https://github.com/EddOliver/ZKBiometrics/releases/tag/v1.0.0
 
 # Solution
 
-Para nuestra solucion mas que un proyecto, realizamos todo un mini SDK que implementa de forma practica los ZKproofs para proteger uno de los bienes mas preciados del ser humano, sus biometricos.
+For our solution, more than a project, we made an entire mini SDK that practically implements ZKproofs to protect one of the most precious assets of human beings, their biometrics.
 
 <img src="https://i.ibb.co/wLxL358/image.png">
 
-Los sensores de biometricos tienen como fin convertir nuestras lecturas biometricas en datos que un device puede comprobar, sin embargo utilizarlos como metodo de verificacion en blockchain es peligroso debido a la posibilidad de exponerlos, por eso hoy presentamos ZKbiometrics.
+Biometric sensors are intended to convert our biometric readings into data that a device can verify, however using them as a verification method in blockchain is dangerous due to the possibility of exposing them, that is why today we present ZKbiometrics.
 
 ### System's Architecture:
 
 <img src="https://i.ibb.co/6N5dxsZ/scheme-drawio-4.png">
 
-- Todas las ZKproofs fueron realizadas con la toolbox de [ZoKrates](https://zokrates.github.io/).
+- All ZKproofs were made with the [ZoKrates](https://zokrates.github.io/) toolbox.
 
-- All EVMs transactions are controlled through [EthersJS](https://docs.ethers.org/v5/) en la testnet de [Scroll Sepolia](https://sepolia.scroll.io/).
+- All EVMs transactions are controlled through [EthersJS](https://docs.ethers.org/v5/) on the [Scroll Sepolia](https://sepolia.scroll.io/) testnet.
 
-A travez de correr un offline NodeJS server en nuestra React native DApp podemos obtener de forma segura ZKproofs de nuestros biometricos con el fin de poder utilizarlos en la firma de transacciones en la red de Scroll, estos datos biometricos pueden provenir de un FaceID, lectura de Iris, Fingerprint o de cualquier sensor.
+By running an offline NodeJS server in our React native DApp we can safely obtain ZKproofs of our biometrics in order to be able to use them in signing transactions on the Scroll network. These biometric data can come from a FaceID, reading Iris, Fingerprint or any sensor.
 
 # ZKproof Generator SDK:
 
-La implementacion del ZKproof-Generator SDK tiene como fin realizar todos los procesos de creacion de keypair, contrato, proofs y bytecode necesarios para implementar ZK proofs en cualquier contrato existente en solidity. Sin embargo en este proyecto esta enfocado a su uso en biometricos.
+The implementation of the ZKproof-Generator SDK is intended to carry out all the keypair, contract, proofs and bytecode creation processes necessary to implement ZK proofs in any existing contract in solidity. However, this project is focused on its use in biometrics.
 
 [ZKproof Generator CODE](./ZKproof-generator/index.js)
 
-El generador utiliza dos datos de entrada para generar el circuito necesario para funcionar.
+The generator uses two input data to generate the circuit necessary to operate.
 
-- Un hash o datos generado a partir del dato biometrico leido, en el caso de nuestra wallet el fingerprint.
-- El address publico, el cual nos servira para "ligar" la proof con nuestra public key en el verificador.
+- A hash or data generated from the biometric data read, in the case of our wallet the fingerprint.
+- The public address, which will help us "link" the proof with our public key in the verifier.
 
     // Proof
     const hash = "0x651192EF40CAEd1D858AA11C173a8323843A8D41";    // EXAMPLE Biometric Hashed Data or any sensitive data
@@ -64,7 +64,7 @@ El generador utiliza dos datos de entrada para generar el circuito necesario par
     }
     `
 
-Una vez teniendo el circuito listo, el generador genera todos los archivos para deployment.
+Once the circuit is ready, the generator generates all the files for deployment.
 
     ...
     keypair = zokratesProvider.setup(artifacts.program);
@@ -75,7 +75,7 @@ Una vez teniendo el circuito listo, el generador genera todos los archivos para 
     var output = JSON.parse(solc.compile(JSON.stringify(options)));
     console.log(output.contracts["verifier.sol"]["Verifier"].evm.bytecode.object);
 
-Ademas de darnos todos los archivos, nos provee de un generador de proofs basados en el circuito proporcionado, con el fin de usarlos.
+In addition to giving us all the files, it provides us with a proof generator based on the circuit provided, in order to use them.
 
     const { witness } = zokratesProvider.computeWitness(artifacts, [
     hash,
@@ -98,19 +98,19 @@ Ademas de darnos todos los archivos, nos provee de un generador de proofs basado
 
     console.log({ tupleProof, input });
 
-Por ultimo la implementacion tecnica del SDK en la Wallet esta en la siguiente ruta.
+Finally, the technical implementation of the SDK in the Wallet is in the following route.
 
 [ZK Biometrics Wallet - ZKproof Generator CODE](./ZKbiometrics/nodejs-assets/nodejs-project/main.js)
 
 # ZK Biometrics Wallet:
 
-Para poder ver de forma practica el SDK funcionando, realizamos una wallet completamente funcional que nos provee, ademas de las funciones basicas de una wallet, el poder crear una ZKaccount, con la cual solo podremos firmar a travez de proporcionar las ZKproofs necesarias.
+In order to practically see the SDK working, we made a fully functional wallet that provides us, in addition to the basic functions of a wallet, the ability to create a ZKaccount, with which we can only sign by providing the necessary ZKproofs.
 
 [CONTRACT](./Contracts/ZKaccount.sol)
 
 ## ZKAccount:
 
-Esta cuenta es parecida a una SmartConrtact Wallet, ya que tiene la capacidad de recbir tokens Nativos, ERC20 y ERC721.
+This account is similar to a SmartContact Wallet, as it has the ability to receive Native, ERC20 and ERC721 tokens.
 
     // Receiver and Fallback Functions
 
@@ -162,7 +162,7 @@ Esta cuenta es parecida a una SmartConrtact Wallet, ya que tiene la capacidad de
         ERC721Contract.transferFrom(address(this), _to, 0);
     }
 
-La seccion mas importante de este contrato es el uso de la ZKproofs como metodo de verificacion.
+The most important section of this contract is the use of ZKproofs as a verification method.
 
     library Pairing {
         struct G1Point {
@@ -196,13 +196,13 @@ La seccion mas importante de este contrato es el uso de la ZKproofs como metodo 
 
 ## UI/UX:
 
-Siempre este tipo de tecnologias dan grandes ventajas a los usuarios para mejorar su seguridad al interactuar con la blockchain, sin embargo esto tiene que ser invisible al usuario con el fin de mantener un buen user experience.
+These types of technologies always give great advantages to users to improve their security when interacting with the blockchain, however this has to be invisible to the user in order to maintain a good user experience.
 
 <img src="https://i.ibb.co/1vWGhMq/vlcsnap-2024-02-18-01h17m47s237.png" width="32%">
 <img src="https://i.ibb.co/FYWrQ7Y/vlcsnap-2024-02-18-01h17m56s748.png" width="32%">
 <img src="https://i.ibb.co/BcHy2Gd/vlcsnap-2024-02-18-01h18m30s082.png" width="32%">
 
-Ademas la wallet provee una interfaz capaz de poco a poco ir aumentando los sensores con los cuales podremos pagar, ya que podemos usar los sensores internos del smartphone o sensores externos como en este POC.
+In addition, the wallet provides an interface capable of gradually increasing the sensors with which we can pay, since we can use the internal sensors of the smartphone or external sensors as in this POC.
 
 <img src="https://i.ibb.co/1rx6wgj/vlcsnap-2024-02-18-01h18m39s644.png" width="32%">
 <img src="https://i.ibb.co/Zhbc3nm/vlcsnap-2024-02-18-01h18m42s677.png" width="32%">
@@ -210,11 +210,11 @@ Ademas la wallet provee una interfaz capaz de poco a poco ir aumentando los sens
 
 ## Fingerprint Hardware Module:
 
-El modulo de fingerprint externo, funciona mediante la comunicacion BLE entre el celular y el ESP32.
+The external fingerprint module works through BLE communication between the cell phone and the ESP32.
 
 <img src="https://i.ibb.co/bKRc7xX/Fingerprint.png">
 
-Todo el modulo funciona gracias a la comunicacion BLE lo cual nos provee buena eficiencia energetica y mejor compatibilidad con React Native.
+The entire module works thanks to BLE communication, which provides us with good energy efficiency and better compatibility with React Native.
 
     // BLE Services and Chars Class
     BLEService ZKbiometricsService("1101");
@@ -225,7 +225,7 @@ Todo el modulo funciona gracias a la comunicacion BLE lo cual nos provee buena e
     // Fingerprint Reader
     Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 
-El sensor nos provee una lectura del HASH de la huella, el cual en el NodeJS sever del celular nos provee la ZKproof necesaria para realizar la firma.
+The sensor provides us with a reading of the HASH of the fingerprint, which in the cell phone's NodeJS sever provides us with the ZKproof necessary to perform the signature.
 
     uint8_t getFingerprintID() {
     uint8_t p = finger.getImage();
