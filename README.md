@@ -1,6 +1,6 @@
 # ZKBiometrics
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) [<img src="https://img.shields.io/badge/View-Video-red">](pending...)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) [<img src="https://img.shields.io/badge/View-Video-red">](https://youtu.be/xM0JQTWDaFM)
 
 <img src="https://i.ibb.co/9q1K18s/logo-2.png">
 
@@ -12,7 +12,7 @@ APK: https://github.com/EddOliver/ZKBiometrics/releases/tag/v1.0.0
 
 ## Main demo video: 
 
-[![Demo](https://i.ibb.co/g4W3ypx/image.png)](pending...)
+[![Demo](https://i.ibb.co/g4W3ypx/image.png)](https://youtu.be/xM0JQTWDaFM)
 
 # Introduction
 
