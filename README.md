@@ -8,7 +8,7 @@ ZK powered biometrics SDK and Wallet.
 
 ## Android Dapp:
 
-APK: https://github.com/...
+APK: https://github.com/EddOliver/ZKBiometrics/releases/tag/v1.0.0
 
 ## Main demo video: 
 
