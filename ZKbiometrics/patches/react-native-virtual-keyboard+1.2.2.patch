@@ -1,0 +1,68 @@
+diff --git a/node_modules/react-native-virtual-keyboard/src/VirtualKeyboard.js b/node_modules/react-native-virtual-keyboard/src/VirtualKeyboard.js
+index c846008..b67a57e 100644
+--- a/node_modules/react-native-virtual-keyboard/src/VirtualKeyboard.js
++++ b/node_modules/react-native-virtual-keyboard/src/VirtualKeyboard.js
+@@ -7,9 +7,8 @@ import {
+ 	Text,
+ 	View,
+ 	TouchableOpacity,
+-	Image,
++	Image
+ } from 'react-native';
+-import { ViewPropTypes, TextPropTypes } from 'deprecated-react-native-prop-types';
+ 
+ import styles from './VirtualKeyboard.style';
+ 
+@@ -19,19 +18,6 @@ const PRESS_MODE_STRING = 'string';
+ 
+ export default class VirtualKeyboard extends Component {
+ 
+-	static propTypes = {
+-		pressMode: PropTypes.oneOf(['string', 'char']),
+-		color: PropTypes.string,
+-		onPress: PropTypes.func.isRequired,
+-		backspaceImg: PropTypes.number,
+-		applyBackspaceTint: PropTypes.bool,
+-		decimal: PropTypes.bool,
+-		rowStyle: ViewPropTypes.style,
+-		cellStyle: ViewPropTypes.style,
+-		textStyle: TextPropTypes.style,
+-		clearOnLongPress: PropTypes.bool,
+-	}
+-
+ 	static defaultProps = {
+ 		pressMode: 'string',
+ 		color: 'gray',
+@@ -48,6 +34,14 @@ export default class VirtualKeyboard extends Component {
+ 		};
+ 	}
+ 
++	componentDidUpdate(prevProps) {
++		if(this.props.clear !==prevProps.clear && this.props.clear===true){
++			this.setState({
++				text:""
++			})
++		}
++	}
++
+ 	render() {
+ 		return (
+ 			<View style={[styles.container, this.props.style]}>
+@@ -55,7 +49,7 @@ export default class VirtualKeyboard extends Component {
+ 				{this.Row([4, 5, 6])}
+ 				{this.Row([7, 8, 9])}
+ 				<View style={[styles.row, this.props.rowStyle]}>
+-					{this.props.decimal ? this.Cell('.') : <View style={{ flex: 1 }} /> }
++					{this.props.decimal ? this.Cell('.') : <View style={{ flex: 1 }} />}
+ 					{this.Cell(0)}
+ 					{this.Backspace()}
+ 				</View>
+@@ -66,7 +60,7 @@ export default class VirtualKeyboard extends Component {
+ 	Backspace() {
+ 		return (
+ 			<TouchableOpacity accessibilityLabel='backspace' style={styles.backspace} onPress={() => { this.onPress(BACK) }}
+-				onLongPress={() => { if(this.props.clearOnLongPress) this.onPress(CLEAR) }}
++				onLongPress={() => { if (this.props.clearOnLongPress) this.onPress(CLEAR) }}
+ 			>
+ 				<Image source={this.props.backspaceImg} resizeMode='contain' style={this.props.applyBackspaceTint && ({ tintColor: this.props.color })} />
+ 			</TouchableOpacity>

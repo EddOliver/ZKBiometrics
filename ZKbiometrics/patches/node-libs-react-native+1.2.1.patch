@@ -1,0 +1,66 @@
+diff --git a/node_modules/node-libs-react-native/globals.js b/node_modules/node-libs-react-native/globals.js
+index dd9cf7f..0636868 100644
+--- a/node_modules/node-libs-react-native/globals.js
++++ b/node_modules/node-libs-react-native/globals.js
+@@ -1,5 +1,46 @@
++// Polyfill crypto.getRandomvalues
++import "react-native-get-random-values";
++
++// URL Polyfill
++import "react-native-url-polyfill/auto";
++
++function capitalizeFirstLetter(string) {
++  return string.charAt(0).toUpperCase() + string.slice(1);
++}
++
++global.capitalizeFirstLetter = capitalizeFirstLetter;
++
++// Ethers Shims
++
+ global.Buffer = require('buffer').Buffer;
+ global.process = require('process');
++global.btoa = require('base-64').encode;
++global.atob = require('base-64').decode;
++global.nextTick = function (callback) { setTimeout(callback, 0); }
++
++global.TextEncoder = require('text-encoding').TextEncoder;
++
++  var fr = new FileReader();
++  try {
++      fr.readAsArrayBuffer(new Blob([ "hello" ], { type: "text/plain" }));
++  } catch (error) {
++      FileReader.prototype.readAsArrayBuffer = function (blob) {
++          if (this.readyState === this.LOADING) { throw new Error("InvalidStateError"); }
++          this._setReadyState(this.LOADING);
++          this._result = null;
++          this._error = null;
++          var fr = new FileReader();
++          fr.onloadend = () => {
++              var content = atob(fr.result.split(",").pop().trim());
++              var buffer = new ArrayBuffer(content.length);
++              var view = new Uint8Array(buffer);
++              view.set(Array.from(content).map(c => c.charCodeAt(0)));
++              this._result = buffer;
++              this._setReadyState(this.DONE);
++          };
++          fr.readAsDataURL(blob);
++      }
++  }
+ 
+ // Needed so that 'stream-http' chooses the right default protocol.
+ global.location = {
+@@ -9,6 +50,11 @@ global.location = {
+ // Some modules expect userAgent to be a string
+ global.navigator.userAgent = 'React Native';
+ 
+-const { encode, decode } = require("base-64");
+-global.atob = decode;
+-global.btoa = encode;
++if (typeof global?.Linking === "undefined") {
++  try {
++    global.Linking = require("react-native").Linking;
++  } catch (e) {
++    // eslint-disable-next-line no-console
++    console.error("react-native-compat: react-native.Linking is not available");
++  }
++}

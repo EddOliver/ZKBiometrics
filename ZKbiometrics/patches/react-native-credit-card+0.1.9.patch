@@ -1,0 +1,17 @@
+diff --git a/node_modules/react-native-credit-card/index.js b/node_modules/react-native-credit-card/index.js
+index d78b0e0..c963f30 100644
+--- a/node_modules/react-native-credit-card/index.js
++++ b/node_modules/react-native-credit-card/index.js
+@@ -33,10 +33,10 @@ class CreditCard extends Component {
+     getValue(name) {
+         return this[name]();
+     }
+-    componentWillReceiveProps(nextProps) {
++    UNSAFE_componentWillReceiveProps(nextProps) {
+         this.updateType(nextProps);
+     }
+-    componentWillMount() {
++    UNSAFE_componentWillMount() {
+         this.updateType(this.props);
+     }
+     updateType(props) {
