@@ -14,11 +14,7 @@ APK: https://github.com/EddOliver/ZKBiometrics/releases/tag/v1.0.0
 
 [![Demo](https://i.ibb.co/g4W3ypx/image.png)](https://youtu.be/xM0JQTWDaFM)
 
-# Introduction
-
-
-
-# Solution
+# Project:
 
 For our solution, more than a project, we made an entire mini SDK that practically implements ZKproofs to protect one of the most precious assets of human beings, their biometrics.
 
@@ -198,15 +194,11 @@ The most important section of this contract is the use of ZKproofs as a verifica
 
 These types of technologies always give great advantages to users to improve their security when interacting with the blockchain, however this has to be invisible to the user in order to maintain a good user experience.
 
-<img src="https://i.ibb.co/1vWGhMq/vlcsnap-2024-02-18-01h17m47s237.png" width="32%">
-<img src="https://i.ibb.co/FYWrQ7Y/vlcsnap-2024-02-18-01h17m56s748.png" width="32%">
-<img src="https://i.ibb.co/BcHy2Gd/vlcsnap-2024-02-18-01h18m30s082.png" width="32%">
+<img src="https://i.ibb.co/1vWGhMq/vlcsnap-2024-02-18-01h17m47s237.png" width="32%"> <img src="https://i.ibb.co/FYWrQ7Y/vlcsnap-2024-02-18-01h17m56s748.png" width="32%"> <img src="https://i.ibb.co/BcHy2Gd/vlcsnap-2024-02-18-01h18m30s082.png" width="32%">
 
 In addition, the wallet provides an interface capable of gradually increasing the sensors with which we can pay, since we can use the internal sensors of the smartphone or external sensors as in this POC.
 
-<img src="https://i.ibb.co/1rx6wgj/vlcsnap-2024-02-18-01h18m39s644.png" width="32%">
-<img src="https://i.ibb.co/Zhbc3nm/vlcsnap-2024-02-18-01h18m42s677.png" width="32%">
-<img src="https://i.ibb.co/6DHcmnR/vlcsnap-2024-02-18-01h19m20s267.png" width="32%">
+<img src="https://i.ibb.co/1rx6wgj/vlcsnap-2024-02-18-01h18m39s644.png" width="32%"> <img src="https://i.ibb.co/Zhbc3nm/vlcsnap-2024-02-18-01h18m42s677.png" width="32%"> <img src="https://i.ibb.co/6DHcmnR/vlcsnap-2024-02-18-01h19m20s267.png" width="32%">
 
 ## Fingerprint Hardware Module:
 
