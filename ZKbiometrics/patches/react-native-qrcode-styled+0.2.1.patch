@@ -1,0 +1,126 @@
+diff --git a/node_modules/react-native-qrcode-styled/src/components/SVGPieces.tsx b/node_modules/react-native-qrcode-styled/src/components/SVGPieces.tsx
+index 3a0274f..e0baec7 100644
+--- a/node_modules/react-native-qrcode-styled/src/components/SVGPieces.tsx
++++ b/node_modules/react-native-qrcode-styled/src/components/SVGPieces.tsx
+@@ -26,7 +26,7 @@ import type {
+   LogoArea,
+ } from '../types';
+ 
+-export const DEFAULT_PIECE_SIZE = 5;
++export const DEFAULT_PIECE_SIZE = 10;
+ 
+ interface SVGPiecesProps extends PieceOptions {
+   bitMatrix: BitMatrix;
+diff --git a/node_modules/react-native-qrcode-styled/src/components/SVGQRCodeStyled.tsx b/node_modules/react-native-qrcode-styled/src/components/SVGQRCodeStyled.tsx
+index fe51ab7..2facaa8 100644
+--- a/node_modules/react-native-qrcode-styled/src/components/SVGQRCodeStyled.tsx
++++ b/node_modules/react-native-qrcode-styled/src/components/SVGQRCodeStyled.tsx
+@@ -27,6 +27,17 @@ import useQRCodeData from '../hooks/useQRCodeData';
+ import SVGPieces, { DEFAULT_PIECE_SIZE } from './SVGPieces';
+ import SVGQRLogo from './SVGQRLogo';
+ import SVGGradient from './SVGGradient';
++import { Dimensions } from 'react-native';
++
++function tempFix(pieceSize, qrCodeSize, maxSize){ // Only Fix Temporary
++  let tempPiece = pieceSize
++  for(let i=0;i<100;i++){
++    if(tempPiece*qrCodeSize > maxSize){
++      tempPiece = tempPiece - 0.1
++    }
++  }
++  return tempPiece
++}
+ 
+ export interface SVGQRCodeStyledProps extends QRCodeOptions, PieceOptions, SvgProps {
+   data?: QRCodeMessage;
+@@ -84,7 +95,9 @@ function SVGQRCodeStyled(
+     [errorCorrectionLevel, maskPattern, toSJISFunc, version]
+   );
+   const { qrCodeSize, bitMatrix } = useQRCodeData(data, qrCodeOptions);
+-  const svgSize = pieceSize * qrCodeSize;
++  const tempProp = { ...props };
++  const myPieceSize = tempFix(pieceSize,qrCodeSize,tempProp.maxSize??Dimensions.get("screen").width *0.9 )
++  const svgSize = myPieceSize * qrCodeSize
+ 
+   useEffect(() => {
+     onChangeSize?.(qrCodeSize);
+@@ -99,19 +112,19 @@ function SVGQRCodeStyled(
+     const _size = svgSize + 2 * padding;
+     _props.width = _size;
+     _props.height = _size;
+-    _props.viewBox = `-${padding} -${padding} ${_size} ${_size}`;
++    _props.viewBox = `-${padding} -${padding} ${_props.height} ${_props.width}`;
+   }
+ 
+   const startGradientOuterEyeCoords: { [K in EyePosition]: GradientOrigin } = {
+     topLeft: [0, 0],
+-    topRight: [svgSize - pieceSize * OUTER_EYE_SIZE_IN_BITS, 0],
+-    bottomLeft: [0, svgSize - pieceSize * OUTER_EYE_SIZE_IN_BITS],
++    topRight: [svgSize - myPieceSize * OUTER_EYE_SIZE_IN_BITS, 0],
++    bottomLeft: [0, svgSize - myPieceSize * OUTER_EYE_SIZE_IN_BITS],
+   };
+ 
+   const startGradientInnerEyeCoords: { [K in EyePosition]: GradientOrigin } = {
+-    topLeft: [2 * pieceSize, 2 * pieceSize],
+-    topRight: [svgSize - pieceSize * INNER_EYE_SIZE_IN_BITS + 2 * pieceSize, 2 * pieceSize],
+-    bottomLeft: [2 * pieceSize, svgSize - pieceSize * OUTER_EYE_SIZE_IN_BITS + 2 * pieceSize],
++    topLeft: [2 * myPieceSize, 2 * myPieceSize],
++    topRight: [svgSize - myPieceSize * INNER_EYE_SIZE_IN_BITS + 2 * myPieceSize, 2 * myPieceSize],
++    bottomLeft: [2 * myPieceSize, svgSize - myPieceSize * OUTER_EYE_SIZE_IN_BITS + 2 * myPieceSize],
+   };
+ 
+   const renderPieces = () => (
+@@ -123,7 +136,7 @@ function SVGQRCodeStyled(
+       pieceCornerType={pieceCornerType}
+       pieceRotation={pieceRotation}
+       pieceScale={pieceScale}
+-      pieceSize={pieceSize}
++      pieceSize={myPieceSize}
+       pieceStroke={pieceStroke}
+       pieceStrokeWidth={pieceStrokeWidth}
+       outerEyesOptions={transformedOuterEyesOptions}
+@@ -143,7 +156,7 @@ function SVGQRCodeStyled(
+       <SVGQRLogo
+         {...logoProps}
+         errorCorrectionLevel={errorCorrectionLevel}
+-        pieceSize={pieceSize}
++        pieceSize={myPieceSize}
+         qrCodeSize={qrCodeSize}
+         onChange={handleChangeLogo}
+       />
+@@ -170,7 +183,7 @@ function SVGQRCodeStyled(
+ 
+         {renderLogo()}
+ 
+-        {children?.(pieceSize, bitMatrix)}
++        {children?.(myPieceSize, bitMatrix)}
+       </Svg>
+     );
+   }
+@@ -187,7 +200,7 @@ function SVGQRCodeStyled(
+                 <SVGGradient
+                   id={`${key}CornerSquareGradient`}
+                   key={`${key}CornerSquareGradient`}
+-                  size={pieceSize * OUTER_EYE_SIZE_IN_BITS}
++                  size={myPieceSize * OUTER_EYE_SIZE_IN_BITS}
+                   origin={startGradientOuterEyeCoords[key as EyePosition]}
+                   {...transformedOuterEyesOptions?.[key as EyePosition]?.gradient}
+                 />
+@@ -200,7 +213,7 @@ function SVGQRCodeStyled(
+                 <SVGGradient
+                   id={`${key}CornerDotGradient`}
+                   key={`${key}CornerDotGradient`}
+-                  size={pieceSize * INNER_EYE_SIZE_IN_BITS}
++                  size={myPieceSize * INNER_EYE_SIZE_IN_BITS}
+                   origin={startGradientInnerEyeCoords[key as EyePosition]}
+                   {...transformedInnerEyesOptions?.[key as EyePosition]?.gradient}
+                 />
+@@ -213,7 +226,7 @@ function SVGQRCodeStyled(
+ 
+       {renderLogo()}
+ 
+-      {children?.(pieceSize, bitMatrix)}
++      {children?.(myPieceSize, bitMatrix)}
+     </Svg>
+   );
+ }

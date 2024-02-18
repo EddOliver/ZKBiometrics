@@ -1,0 +1,8 @@
+const field biometricHashA = 0xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX;
+const field addressA = 0xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX;
+
+def main(private field biometricHashB, field address) {
+    assert(biometricHashA == biometricHashB);
+    assert(addressA == address);
+    return;
+}

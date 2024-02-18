@@ -1,0 +1,330 @@
+export const zkAccountABI = [
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '_zokratesVeriferAddress',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'nonpayable',
+    type: 'constructor',
+  },
+  {
+    stateMutability: 'payable',
+    type: 'fallback',
+  },
+  {
+    inputs: [],
+    name: 'getBalance',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: 's_contract',
+        type: 'address',
+      },
+    ],
+    name: 'getBalanceECR20',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '_newOwner',
+        type: 'address',
+      },
+    ],
+    name: 'newOwner',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '_zokratesVeriferAddress',
+        type: 'address',
+      },
+    ],
+    name: 'newVerifier',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: 'value',
+        type: 'uint256',
+      },
+      {
+        internalType: 'address',
+        name: '_to',
+        type: 'address',
+      },
+      {
+        internalType: 'address',
+        name: '_tokenContract',
+        type: 'address',
+      },
+      {
+        components: [
+          {
+            components: [
+              {
+                internalType: 'uint256',
+                name: 'X',
+                type: 'uint256',
+              },
+              {
+                internalType: 'uint256',
+                name: 'Y',
+                type: 'uint256',
+              },
+            ],
+            internalType: 'struct Pairing.G1Point',
+            name: 'a',
+            type: 'tuple',
+          },
+          {
+            components: [
+              {
+                internalType: 'uint256[2]',
+                name: 'X',
+                type: 'uint256[2]',
+              },
+              {
+                internalType: 'uint256[2]',
+                name: 'Y',
+                type: 'uint256[2]',
+              },
+            ],
+            internalType: 'struct Pairing.G2Point',
+            name: 'b',
+            type: 'tuple',
+          },
+          {
+            components: [
+              {
+                internalType: 'uint256',
+                name: 'X',
+                type: 'uint256',
+              },
+              {
+                internalType: 'uint256',
+                name: 'Y',
+                type: 'uint256',
+              },
+            ],
+            internalType: 'struct Pairing.G1Point',
+            name: 'c',
+            type: 'tuple',
+          },
+        ],
+        internalType: 'struct Proof',
+        name: 'proof',
+        type: 'tuple',
+      },
+      {
+        internalType: 'uint256[1]',
+        name: 'input',
+        type: 'uint256[1]',
+      },
+    ],
+    name: 'transferECR20',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '_to',
+        type: 'address',
+      },
+      {
+        internalType: 'address',
+        name: '_tokenContract',
+        type: 'address',
+      },
+      {
+        components: [
+          {
+            components: [
+              {
+                internalType: 'uint256',
+                name: 'X',
+                type: 'uint256',
+              },
+              {
+                internalType: 'uint256',
+                name: 'Y',
+                type: 'uint256',
+              },
+            ],
+            internalType: 'struct Pairing.G1Point',
+            name: 'a',
+            type: 'tuple',
+          },
+          {
+            components: [
+              {
+                internalType: 'uint256[2]',
+                name: 'X',
+                type: 'uint256[2]',
+              },
+              {
+                internalType: 'uint256[2]',
+                name: 'Y',
+                type: 'uint256[2]',
+              },
+            ],
+            internalType: 'struct Pairing.G2Point',
+            name: 'b',
+            type: 'tuple',
+          },
+          {
+            components: [
+              {
+                internalType: 'uint256',
+                name: 'X',
+                type: 'uint256',
+              },
+              {
+                internalType: 'uint256',
+                name: 'Y',
+                type: 'uint256',
+              },
+            ],
+            internalType: 'struct Pairing.G1Point',
+            name: 'c',
+            type: 'tuple',
+          },
+        ],
+        internalType: 'struct Proof',
+        name: 'proof',
+        type: 'tuple',
+      },
+      {
+        internalType: 'uint256[1]',
+        name: 'input',
+        type: 'uint256[1]',
+      },
+    ],
+    name: 'transferECR721',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: 'value',
+        type: 'uint256',
+      },
+      {
+        internalType: 'address payable',
+        name: 'to',
+        type: 'address',
+      },
+      {
+        components: [
+          {
+            components: [
+              {
+                internalType: 'uint256',
+                name: 'X',
+                type: 'uint256',
+              },
+              {
+                internalType: 'uint256',
+                name: 'Y',
+                type: 'uint256',
+              },
+            ],
+            internalType: 'struct Pairing.G1Point',
+            name: 'a',
+            type: 'tuple',
+          },
+          {
+            components: [
+              {
+                internalType: 'uint256[2]',
+                name: 'X',
+                type: 'uint256[2]',
+              },
+              {
+                internalType: 'uint256[2]',
+                name: 'Y',
+                type: 'uint256[2]',
+              },
+            ],
+            internalType: 'struct Pairing.G2Point',
+            name: 'b',
+            type: 'tuple',
+          },
+          {
+            components: [
+              {
+                internalType: 'uint256',
+                name: 'X',
+                type: 'uint256',
+              },
+              {
+                internalType: 'uint256',
+                name: 'Y',
+                type: 'uint256',
+              },
+            ],
+            internalType: 'struct Pairing.G1Point',
+            name: 'c',
+            type: 'tuple',
+          },
+        ],
+        internalType: 'struct Proof',
+        name: 'proof',
+        type: 'tuple',
+      },
+      {
+        internalType: 'uint256[1]',
+        name: 'input',
+        type: 'uint256[1]',
+      },
+    ],
+    name: 'transferNative',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    stateMutability: 'payable',
+    type: 'receive',
+  },
+];
+
+export const zkAccountBytecode =
+  '608060405234801562000010575f80fd5b50604051620012e7380380620012e7833981810160405281019062000036919062000129565b60015f819055503360015f6101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508060025f6101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505062000159565b5f80fd5b5f73ffffffffffffffffffffffffffffffffffffffff82169050919050565b5f620000f382620000c8565b9050919050565b6200010581620000e7565b811462000110575f80fd5b50565b5f815190506200012381620000fa565b92915050565b5f60208284031215620001415762000140620000c4565b5b5f620001508482850162000113565b91505092915050565b61118080620001675f395ff3fe608060405260043610610073575f3560e01c806366863c9c1161004d57806366863c9c1461010a57806385952454146101325780639c1178861461015a578063e98f8c4e146101825761007a565b8063062d58fb1461007c57806312065fe0146100a45780635f585527146100ce5761007a565b3661007a57005b005b348015610087575f80fd5b506100a2600480360381019061009d919061082b565b6101aa565b005b3480156100af575f80fd5b506100b861027c565b6040516100c5919061086e565b60405180910390f35b3480156100d9575f80fd5b506100f460048036038101906100ef919061082b565b610283565b604051610101919061086e565b60405180910390f35b348015610115575f80fd5b50610130600480360381019061012b9190610b9d565b610308565b005b34801561013d575f80fd5b506101586004803603810190610153919061082b565b61045e565b005b348015610165575f80fd5b50610180600480360381019061017b9190610c3e565b610530565b005b34801561018d575f80fd5b506101a860048036038101906101a39190610ca4565b61065b565b005b60015f9054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614610239576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161023090610d77565b60405180910390fd5b8060025f6101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b5f47905090565b5f808290508073ffffffffffffffffffffffffffffffffffffffff166370a08231306040518263ffffffff1660e01b81526004016102c19190610da4565b602060405180830381865afa1580156102dc573d5f803e3d5ffd5b505050506040513d601f19601f820116820180604052508101906103009190610dd1565b915050919050565b6001151560025f9054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663f48d772984846040518363ffffffff1660e01b8152600401610368929190610fbb565b602060405180830381865afa158015610383573d5f803e3d5ffd5b505050506040513d601f19601f820116820180604052508101906103a79190611019565b1515146103e9576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016103e09061108e565b60405180910390fd5b5f8390508073ffffffffffffffffffffffffffffffffffffffff166323b872dd30875f6040518463ffffffff1660e01b815260040161042a939291906110ee565b5f604051808303815f87803b158015610441575f80fd5b505af1158015610453573d5f803e3d5ffd5b505050505050505050565b60015f9054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146104ed576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016104e490610d77565b60405180910390fd5b8060015f6101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b6001151560025f9054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663f48d772984846040518363ffffffff1660e01b8152600401610590929190610fbb565b602060405180830381865afa1580156105ab573d5f803e3d5ffd5b505050506040513d601f19601f820116820180604052508101906105cf9190611019565b151514610611576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016106089061108e565b60405180910390fd5b8273ffffffffffffffffffffffffffffffffffffffff166108fc8590811502906040515f60405180830381858888f19350505050158015610654573d5f803e3d5ffd5b5050505050565b5f8390506001151560025f9054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663f48d772985856040518363ffffffff1660e01b81526004016106bf929190610fbb565b602060405180830381865afa1580156106da573d5f803e3d5ffd5b505050506040513d601f19601f820116820180604052508101906106fe9190611019565b151514610740576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016107379061108e565b60405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff1663a9059cbb86886040518363ffffffff1660e01b815260040161077b929190611123565b6020604051808303815f875af1158015610797573d5f803e3d5ffd5b505050506040513d601f19601f820116820180604052508101906107bb9190611019565b50505050505050565b5f604051905090565b5f80fd5b5f73ffffffffffffffffffffffffffffffffffffffff82169050919050565b5f6107fa826107d1565b9050919050565b61080a816107f0565b8114610814575f80fd5b50565b5f8135905061082581610801565b92915050565b5f602082840312156108405761083f6107cd565b5b5f61084d84828501610817565b91505092915050565b5f819050919050565b61086881610856565b82525050565b5f6020820190506108815f83018461085f565b92915050565b5f80fd5b5f601f19601f8301169050919050565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52604160045260245ffd5b6108d18261088b565b810181811067ffffffffffffffff821117156108f0576108ef61089b565b5b80604052505050565b5f6109026107c4565b905061090e82826108c8565b919050565b61091c81610856565b8114610926575f80fd5b50565b5f8135905061093781610913565b92915050565b5f6040828403121561095257610951610887565b5b61095c60406108f9565b90505f61096b84828501610929565b5f83015250602061097e84828501610929565b60208301525092915050565b5f80fd5b5f67ffffffffffffffff8211156109a8576109a761089b565b5b602082029050919050565b5f80fd5b5f6109c96109c48461098e565b6108f9565b905080602084028301858111156109e3576109e26109b3565b5b835b81811015610a0c57806109f88882610929565b8452602084019350506020810190506109e5565b5050509392505050565b5f82601f830112610a2a57610a2961098a565b5b6002610a378482856109b7565b91505092915050565b5f60808284031215610a5557610a54610887565b5b610a5f60406108f9565b90505f610a6e84828501610a16565b5f830152506040610a8184828501610a16565b60208301525092915050565b5f6101008284031215610aa357610aa2610887565b5b610aad60606108f9565b90505f610abc8482850161093d565b5f830152506040610acf84828501610a40565b60208301525060c0610ae38482850161093d565b60408301525092915050565b5f67ffffffffffffffff821115610b0957610b0861089b565b5b602082029050919050565b5f610b26610b2184610aef565b6108f9565b90508060208402830185811115610b4057610b3f6109b3565b5b835b81811015610b695780610b558882610929565b845260208401935050602081019050610b42565b5050509392505050565b5f82601f830112610b8757610b8661098a565b5b6001610b94848285610b14565b91505092915050565b5f805f806101608587031215610bb657610bb56107cd565b5b5f610bc387828801610817565b9450506020610bd487828801610817565b9350506040610be587828801610a8d565b925050610140610bf787828801610b73565b91505092959194509250565b5f610c0d826107d1565b9050919050565b610c1d81610c03565b8114610c27575f80fd5b50565b5f81359050610c3881610c14565b92915050565b5f805f806101608587031215610c5757610c566107cd565b5b5f610c6487828801610929565b9450506020610c7587828801610c2a565b9350506040610c8687828801610a8d565b925050610140610c9887828801610b73565b91505092959194509250565b5f805f805f6101808688031215610cbe57610cbd6107cd565b5b5f610ccb88828901610929565b9550506020610cdc88828901610817565b9450506040610ced88828901610817565b9350506060610cfe88828901610a8d565b925050610160610d1088828901610b73565b9150509295509295909350565b5f82825260208201905092915050565b7f4e6f7420617574686f72697a65640000000000000000000000000000000000005f82015250565b5f610d61600e83610d1d565b9150610d6c82610d2d565b602082019050919050565b5f6020820190508181035f830152610d8e81610d55565b9050919050565b610d9e816107f0565b82525050565b5f602082019050610db75f830184610d95565b92915050565b5f81519050610dcb81610913565b92915050565b5f60208284031215610de657610de56107cd565b5b5f610df384828501610dbd565b91505092915050565b610e0581610856565b82525050565b604082015f820151610e1f5f850182610dfc565b506020820151610e326020850182610dfc565b50505050565b5f60029050919050565b5f81905092915050565b5f819050919050565b5f610e608383610dfc565b60208301905092915050565b5f602082019050919050565b610e8181610e38565b610e8b8184610e42565b9250610e9682610e4c565b805f5b83811015610ec6578151610ead8782610e55565b9650610eb883610e6c565b925050600181019050610e99565b505050505050565b608082015f820151610ee25f850182610e78565b506020820151610ef56040850182610e78565b50505050565b61010082015f820151610f105f850182610e0b565b506020820151610f236040850182610ece565b506040820151610f3660c0850182610e0b565b50505050565b5f60019050919050565b5f81905092915050565b5f819050919050565b5f602082019050919050565b610f6e81610f3c565b610f788184610f46565b9250610f8382610f50565b805f5b83811015610fb3578151610f9a8782610e55565b9650610fa583610f59565b925050600181019050610f86565b505050505050565b5f61012082019050610fcf5f830185610efb565b610fdd610100830184610f65565b9392505050565b5f8115159050919050565b610ff881610fe4565b8114611002575f80fd5b50565b5f8151905061101381610fef565b92915050565b5f6020828403121561102e5761102d6107cd565b5b5f61103b84828501611005565b91505092915050565b7f496e636f72726563742050726f6f6600000000000000000000000000000000005f82015250565b5f611078600f83610d1d565b915061108382611044565b602082019050919050565b5f6020820190508181035f8301526110a58161106c565b9050919050565b5f819050919050565b5f819050919050565b5f6110d86110d36110ce846110ac565b6110b5565b610856565b9050919050565b6110e8816110be565b82525050565b5f6060820190506111015f830186610d95565b61110e6020830185610d95565b61111b60408301846110df565b949350505050565b5f6040820190506111365f830185610d95565b611143602083018461085f565b939250505056fea2646970667358221220f93885652dfc025646921a3be2f69d3a80115faa8d07817e323b402071918e7a64736f6c63430008180033';
